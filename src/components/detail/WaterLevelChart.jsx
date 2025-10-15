@@ -41,9 +41,9 @@ const WaterLevelChart = ({ dam, metric = 'meters' }) => {
   }
 
   return (
-    <div className="h-80">
+    <div className="h-64 sm:h-80">
       <ResponsiveContainer width="100%" height="100%">
-        <AreaChart data={data} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+        <AreaChart data={data} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
           <defs>
             <linearGradient id="colorGradient" x1="0" y1="0" x2="0" y2="1">
               <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.3}/>
@@ -55,21 +55,22 @@ const WaterLevelChart = ({ dam, metric = 'meters' }) => {
             dataKey="date" 
             tickFormatter={formatDate}
             stroke="#6b7280"
-            fontSize={12}
+            fontSize={10}
             axisLine={false}
             tickLine={false}
+            interval="preserveStartEnd"
           />
           <YAxis 
             domain={getYAxisDomain()}
             stroke="#6b7280"
-            fontSize={12}
+            fontSize={10}
             axisLine={false}
             tickLine={false}
             label={{ 
               value: metric === 'meters' ? 'Meters' : 'Percentage (%)', 
               angle: -90, 
               position: 'insideLeft',
-              style: { textAnchor: 'middle' }
+              style: { textAnchor: 'middle', fontSize: '10px' }
             }}
           />
           <Tooltip content={<CustomTooltip />} />
@@ -77,10 +78,10 @@ const WaterLevelChart = ({ dam, metric = 'meters' }) => {
             type="monotone"
             dataKey={getDataKey()}
             stroke="#3B82F6"
-            strokeWidth={3}
+            strokeWidth={2}
             fill="url(#colorGradient)"
-            dot={{ fill: '#3B82F6', strokeWidth: 2, r: 4 }}
-            activeDot={{ r: 6, stroke: '#3B82F6', strokeWidth: 2 }}
+            dot={{ fill: '#3B82F6', strokeWidth: 2, r: 3 }}
+            activeDot={{ r: 5, stroke: '#3B82F6', strokeWidth: 2 }}
           />
         </AreaChart>
       </ResponsiveContainer>

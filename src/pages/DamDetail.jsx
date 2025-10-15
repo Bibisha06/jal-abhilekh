@@ -56,44 +56,44 @@ const DamDetail = () => {
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div className="bg-white rounded-xl border border-gray-200 p-6">
+      {/* Header - Responsive */}
+      <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
         <Link 
           to="/" 
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4 transition-colors"
+          className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-800 mb-4 transition-colors text-sm"
         >
           <ArrowLeft className="w-4 h-4" />
           Back to Dashboard
         </Link>
 
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 mb-2">{dam.name}</h1>
-            <div className="flex items-center gap-4 text-gray-600">
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">{dam.name}</h1>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-gray-600 text-sm">
               <div className="flex items-center gap-2">
                 <Droplets className="w-4 h-4 text-blue-600" />
                 <span>{dam.river_name}</span>
               </div>
-              <span>•</span>
+              <span className="hidden sm:block">•</span>
               <div className="flex items-center gap-2">
                 <MapPin className="w-4 h-4" />
                 <span>{dam.location}, {dam.state}</span>
               </div>
             </div>
           </div>
-          <span className={`inline-flex px-4 py-2 rounded-full text-sm font-semibold border ${statusConfig.className}`}>
+          <span className={`inline-flex px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-sm font-semibold border ${statusConfig.className}`}>
             {statusConfig.label}
           </span>
         </div>
       </div>
 
-      {/* Main Content Grid */}
+      {/* Main Content Grid - Fully responsive */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Left Column - Main Content */}
         <div className="lg:col-span-2 space-y-6">
-          {/* Water Level Trends */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <div className="flex items-center justify-between mb-6">
+          {/* Water Level Trends - Responsive chart controls */}
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <h3 className="text-xl font-semibold text-gray-900">Water Level Trends</h3>
               <div className="flex bg-gray-100 rounded-lg p-1">
                 <button
@@ -122,33 +122,33 @@ const DamDetail = () => {
           </div>
 
           {/* About This Dam */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">About This Dam</h3>
-            <p className="text-gray-700 leading-relaxed">{dam.description}</p>
+            <p className="text-gray-700 leading-relaxed text-sm sm:text-base">{dam.description}</p>
           </div>
         </div>
 
-        {/* Right Column - Sidebar */}
+        {/* Right Column - Sidebar - Stacked on mobile */}
         <div className="space-y-6">
           {/* Current Status */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="text-xl font-semibold text-gray-900 mb-6">Current Status</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-xl font-semibold text-gray-900 mb-4 sm:mb-6">Current Status</h3>
             
             <div className="space-y-6">
               <div>
                 <p className="text-sm text-gray-600 mb-2">Water Level</p>
                 <div className="flex items-end gap-2">
-                  <span className="text-4xl font-bold text-blue-600">{dam.current_level_meters}</span>
-                  <span className="text-gray-600 mb-1">meters</span>
+                  <span className="text-3xl sm:text-4xl font-bold text-blue-600">{dam.current_level_meters}</span>
+                  <span className="text-gray-600 text-sm sm:mb-1">meters</span>
                 </div>
               </div>
 
               <div>
                 <div className="flex justify-between items-center mb-2">
                   <p className="text-sm text-gray-600">Capacity</p>
-                  <span className="text-2xl font-bold text-blue-600">{dam.percentage_full}%</span>
+                  <span className="text-xl sm:text-2xl font-bold text-blue-600">{dam.percentage_full}%</span>
                 </div>
-                <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                <div className="w-full bg-gray-200 rounded-full h-2 sm:h-3 overflow-hidden">
                   <div 
                     className={`h-full rounded-full transition-all duration-1000 ${
                       dam.status === 'Critical' ? 'bg-gradient-to-r from-red-500 to-rose-600' :
@@ -171,20 +171,20 @@ const DamDetail = () => {
           </div>
 
           {/* Dam Information */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
             <h3 className="text-xl font-semibold text-gray-900 mb-4">Dam Information</h3>
             <div className="space-y-3">
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-sm text-gray-600">Type</span>
-                <span className="font-medium">{dam.type}</span>
+                <span className="font-medium text-sm">{dam.type}</span>
               </div>
               <div className="flex justify-between py-2 border-b border-gray-100">
                 <span className="text-sm text-gray-600">Location</span>
-                <span className="font-medium">{dam.location}</span>
+                <span className="font-medium text-sm">{dam.location}</span>
               </div>
               <div className="flex justify-between py-2">
                 <span className="text-sm text-gray-600">State</span>
-                <span className="font-medium">{dam.state}</span>
+                <span className="font-medium text-sm">{dam.state}</span>
               </div>
             </div>
           </div>

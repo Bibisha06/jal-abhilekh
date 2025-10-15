@@ -84,8 +84,8 @@ const Dashboard = () => {
 
   return (
     <div className="space-y-6">
-      {/* Top Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      {/* Top Stats - Responsive grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {[
           { label: 'Avg Level', value: '96.7%' },
           { label: 'Inflows', value: '+12.5%' },
@@ -101,32 +101,34 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Live Overview Filters */}
-      <div className="bg-white rounded-xl p-6 border border-gray-200">
-        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-3">
+      {/* Live Overview Filters - Improved responsive layout */}
+      <div className="bg-white rounded-xl p-4 sm:p-6 border border-gray-200">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <h3 className="text-lg font-bold text-gray-900">Live Overview</h3>
-            {[
-              { value: 'all', label: 'All', color: 'bg-blue-100 text-blue-700' },
-              { value: 'Safe', label: 'Normal', color: 'bg-green-100 text-green-700' },
-              { value: 'Caution', label: 'Warning', color: 'bg-yellow-100 text-yellow-700' },
-              { value: 'Critical', label: 'Critical', color: 'bg-red-100 text-red-700' }
-            ].map((option) => (
-              <button
-                key={option.value}
-                onClick={() => setStatusFilter(option.value)}
-                className={`px-4 py-2 rounded-full font-medium text-sm transition-all ${
-                  statusFilter === option.value
-                    ? option.color
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {option.label}
-              </button>
-            ))}
+            <div className="flex flex-wrap gap-2">
+              {[
+                { value: 'all', label: 'All', color: 'bg-blue-100 text-blue-700' },
+                { value: 'Safe', label: 'Normal', color: 'bg-green-100 text-green-700' },
+                { value: 'Caution', label: 'Warning', color: 'bg-yellow-100 text-yellow-700' },
+                { value: 'Critical', label: 'Critical', color: 'bg-red-100 text-red-700' }
+              ].map((option) => (
+                <button
+                  key={option.value}
+                  onClick={() => setStatusFilter(option.value)}
+                  className={`px-3 py-1.5 sm:px-4 sm:py-2 rounded-full font-medium text-xs sm:text-sm transition-all ${
+                    statusFilter === option.value
+                      ? option.color
+                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                  }`}
+                >
+                  {option.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             <div className="flex items-center gap-2 px-3 py-1.5 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
               <Filter className="w-4 h-4 text-gray-600" />
               <select 
@@ -141,36 +143,36 @@ const Dashboard = () => {
               </select>
             </div>
             
-            <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
-              <span className="text-sm text-gray-700">Status: Any</span>
+            <button className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-xs sm:text-sm">
+              <span className="hidden sm:inline">Status:</span> <span className="hidden sm:inline">Any</span>
               <ChevronDown className="w-4 h-4 text-gray-400" />
             </button>
 
-            <button className="flex items-center gap-2 px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+            <button className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-xs sm:text-sm">
               <Clock className="w-4 h-4 text-gray-600" />
-              <span className="text-sm text-gray-700">Last 24 hours</span>
+              <span className="hidden sm:inline">Last 24 hours</span>
               <ChevronDown className="w-4 h-4 text-gray-400" />
             </button>
           </div>
         </div>
 
-        <div className="flex gap-2 mt-4">
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg font-medium text-sm">
+        <div className="flex flex-wrap gap-2 mt-4">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-green-500 text-white rounded-lg font-medium text-xs sm:text-sm">
             <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
             Live
           </span>
-          <span className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-500 text-white rounded-lg font-medium text-sm">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-emerald-500 text-white rounded-lg font-medium text-xs sm:text-sm">
             Rising
           </span>
         </div>
       </div>
 
-      {/* Main Content Grid */}
+      {/* Main Content Grid - Fully responsive */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-        {/* All Dams Table */}
+        {/* All Dams Table - Responsive table */}
         <div className="lg:col-span-3">
           <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-            <div className="px-6 py-4 border-b border-gray-200">
+            <div className="px-4 sm:px-6 py-4 border-b border-gray-200">
               <h3 className="text-lg font-bold text-gray-900">All Dams</h3>
             </div>
 
@@ -178,11 +180,11 @@ const Dashboard = () => {
               <table className="w-full">
                 <thead>
                   <tr className="border-b border-gray-200 bg-gray-50">
-                    <th className="text-left px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Dam</th>
-                    <th className="text-left px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Current Level</th>
-                    <th className="text-left px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">24h Change</th>
-                    <th className="text-left px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
-                    <th className="text-right px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
+                    <th className="text-left px-4 sm:px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Dam</th>
+                    <th className="text-left px-4 sm:px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider hidden sm:table-cell">Current Level</th>
+                    <th className="text-left px-4 sm:px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">24h Change</th>
+                    <th className="text-left px-4 sm:px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Status</th>
+                    <th className="text-right px-4 sm:px-6 py-3 text-xs font-semibold text-gray-600 uppercase tracking-wider">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -198,7 +200,7 @@ const Dashboard = () => {
                         key={dam.id}
                         className="border-b border-gray-100 hover:bg-gray-50 transition-colors"
                       >
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-4">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
                               <span className="text-blue-600 font-semibold text-sm">
@@ -206,25 +208,25 @@ const Dashboard = () => {
                               </span>
                             </div>
                             <div>
-                              <p className="font-semibold text-gray-900">{dam.name}</p>
-                              <p className="text-sm text-gray-500">{dam.river_name}</p>
+                              <p className="font-semibold text-gray-900 text-sm">{dam.name}</p>
+                              <p className="text-gray-500 text-xs sm:text-sm">{dam.river_name}</p>
                             </div>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-4 hidden sm:table-cell">
                           <div>
                             <p className="font-semibold text-gray-900">{dam.percentage_full}%</p>
-                            <p className="text-sm text-gray-500">capacity</p>
+                            <p className="text-gray-500 text-xs">{dam.current_level_meters}m</p>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
+                        <td className="px-4 sm:px-6 py-4">
                           <div className="flex items-center gap-2">
                             <TrendIcon className={`w-4 h-4 ${
                               isPositive ? 'text-blue-500' : 
                               isNegative ? 'text-orange-500' : 
                               'text-gray-400'
                             }`} />
-                            <span className={`font-semibold ${
+                            <span className={`font-semibold text-xs sm:text-sm ${
                               isPositive ? 'text-blue-600' : 
                               isNegative ? 'text-orange-600' : 
                               'text-gray-500'
@@ -233,18 +235,18 @@ const Dashboard = () => {
                             </span>
                           </div>
                         </td>
-                        <td className="px-6 py-4">
-                          <span className={`inline-flex px-3 py-1 rounded-full text-xs font-semibold ${statusConfig.className}`}>
+                        <td className="px-4 sm:px-6 py-4">
+                          <span className={`inline-flex px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs font-semibold ${statusConfig.className}`}>
                             {statusConfig.label}
                           </span>
                         </td>
-                        <td className="px-6 py-4 text-right">
+                        <td className="px-4 sm:px-6 py-4 text-right">
                           <Link 
                             to={`/dam/${dam.id}`}
-                            className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-sm transition-colors"
+                            className="inline-flex items-center gap-1 text-blue-600 hover:text-blue-700 font-medium text-xs sm:text-sm transition-colors"
                           >
                             View
-                            <ArrowRight className="w-4 h-4" />
+                            <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
                           </Link>
                         </td>
                       </tr>
@@ -256,14 +258,14 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Right Sidebar */}
+        {/* Right Sidebar - Stacked on mobile */}
         <div className="space-y-6">
           {/* Network Capacity */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
-            <h3 className="text-lg font-bold text-gray-900 mb-6">Network Capacity</h3>
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
+            <h3 className="text-lg font-bold text-gray-900 mb-4 sm:mb-6">Network Capacity</h3>
             
-            <div className="relative w-48 h-48 mx-auto">
-              <svg className="w-full h-full transform -rotate-90">
+            <div className="relative w-32 h-32 sm:w-48 sm:h-48 mx-auto">
+              <svg className="w-full h-full transform -rotate-90" viewBox="0 0 192 192">
                 <circle
                   cx="96"
                   cy="96"
@@ -281,31 +283,31 @@ const Dashboard = () => {
                   strokeWidth="16"
                   strokeLinecap="round"
                   strokeDasharray={`${2 * Math.PI * 80}`}
-                  strokeDashoffset={`${2 * Math.PI * 80 * 0.03}`}
+                  strokeDashoffset={`${2 * Math.PI * 80 * (1 - 0.97)}`}
                 />
               </svg>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-center">
-                  <p className="text-5xl font-bold text-gray-900">97%</p>
-                  <p className="text-sm text-gray-500 mt-1">Avg across dams</p>
+                  <p className="text-2xl sm:text-5xl font-bold text-gray-900">97%</p>
+                  <p className="text-xs sm:text-sm text-gray-500 mt-1">Avg across dams</p>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Inflow vs Outflow */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6">
+          <div className="bg-white rounded-xl border border-gray-200 p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
               <h3 className="text-lg font-bold text-gray-900">Inflow vs Outflow</h3>
-              <button className="text-sm text-blue-600 hover:text-blue-700 font-medium">
+              <button className="text-xs sm:text-sm text-blue-600 hover:text-blue-700 font-medium">
                 Details →
               </button>
             </div>
-            <div className="h-32 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg flex items-end justify-around p-4">
+            <div className="h-24 sm:h-32 bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg flex items-end justify-around p-2 sm:p-4">
               {[70, 85, 60, 90, 75, 80].map((height, i) => (
                 <div
                   key={i}
-                  className="w-8 bg-blue-500 rounded-t"
+                  className="w-4 sm:w-8 bg-blue-500 rounded-t"
                   style={{ height: `${height}%` }}
                 />
               ))}
